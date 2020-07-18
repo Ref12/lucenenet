@@ -42,6 +42,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="NuGet Package Defaults">
+    <LuceneNugetPropsPath>$(MSBuildThisFileDirectory)build\Nuget.props</LuceneNugetPropsPath>
     <IsPackable>false</IsPackable>
     <IncludeSymbols>true</IncludeSymbols>
     <!-- This is the new symbols format (the only one currently supported at NuGet.org) -->
