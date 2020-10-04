@@ -50,6 +50,8 @@ namespace Lucene.Net.Search
         /// Returns the prefix of this query. </summary>
         public virtual Term Prefix => _prefix;
 
+        public virtual int MaxExpansions => int.MaxValue;
+
         protected override TermsEnum GetTermsEnum(Terms terms, AttributeSource atts)
         {
             TermsEnum tenum = terms.GetIterator(null);
@@ -59,7 +61,10 @@ namespace Lucene.Net.Search
                 // no prefix -- match all terms for this field:
                 return tenum;
             }
-            return new PrefixTermsEnum(tenum, _prefix.Bytes);
+            return new PrefixTermsEnum(tenum, _prefix.Bytes)
+            {
+                RemainingExpansions = MaxExpansions
+            };
         }
 
         /// <summary>
