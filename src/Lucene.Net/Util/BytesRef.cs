@@ -40,6 +40,7 @@ namespace Lucene.Net.Util
 #if FEATURE_SERIALIZABLE
     [Serializable]
 #endif
+    [DebuggerDisplay("{Utf8ToString()} {ToString()}")]
     public sealed class BytesRef : IComparable<BytesRef>, IComparable, IEquatable<BytesRef> // LUCENENET specific - implemented IComparable for FieldComparator, IEquatable<BytesRef>
 #if FEATURE_CLONEABLE
         , System.ICloneable
