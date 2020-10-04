@@ -33,6 +33,8 @@ namespace Lucene.Net.Search
     {
         private readonly BytesRef prefixRef;
 
+        public int RemainingExpansions { get; set; } = int.MaxValue;
+
         public PrefixTermsEnum(TermsEnum tenum, BytesRef prefixText)
             : base(tenum)
         {
@@ -41,8 +43,9 @@ namespace Lucene.Net.Search
 
         protected override AcceptStatus Accept(BytesRef term)
         {
-            if (StringHelper.StartsWith(term, prefixRef))
+            if (RemainingExpansions > 0 && StringHelper.StartsWith(term, prefixRef))
             {
+                RemainingExpansions--;
                 return AcceptStatus.YES;
             }
             else
